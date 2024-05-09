@@ -16,10 +16,10 @@ button.btn-primary {
   background-color: #75227D;
   border-radius: 20px;
   width: 100%;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
 }
 h1{
   font-size: 48px !important;

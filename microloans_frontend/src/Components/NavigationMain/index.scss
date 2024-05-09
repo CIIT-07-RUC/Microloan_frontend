@@ -1,0 +1,26 @@
+.navigation__wrapper{
+	background-color: #262838;
+	a {
+		color: #fff;
+		&:hover{
+			color: #75227D;	
+		}
+	}
+	.dropdown-menu{
+		a {
+			color: #262838;
+		}
+	}
+	.nav-link-button{
+		margin-right: 10px;
+		border: 1px solid #fff;
+		border-radius: 20px;
+		min-width: 120px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&:hover{
+			border: 1px solid #75227D;
+		}
+	}
+}

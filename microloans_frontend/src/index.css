@@ -11,3 +11,43 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button.btn-primary {
+  background-color: #75227D;
+  border-radius: 20px;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 20px;
+}
+h1{
+  font-size: 48px !important;
+  font-weight: bold;
+  color: #424554 !important;
+}
+
+h3{
+  font-size: 40px !important;
+  color: #424554;
+  font-weight: bold !important;
+}
+h6{
+  font-size: 20px !important;
+  color: #424554;
+}
+
+@media (max-width: 767px) {
+  h1{
+    font-size: 32px !important;
+  }
+  h3{
+    font-size: 28px !important;
+  }
+  h6{
+    font-size: 16px !important;
+  }
+  button.btn-primary {
+    font-size: 16px !important;
+  }
+}

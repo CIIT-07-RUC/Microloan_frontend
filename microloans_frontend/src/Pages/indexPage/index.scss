@@ -1,0 +1,41 @@
+.index__banner{
+	width: 100%;
+	height: 600px;
+	position: relative;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.index__banner__content{
+		position: absolute;
+		top: 50px;
+		left: 70px;
+		height: auto;
+		width: 420px;
+		width: 600px;
+		background-color: rgba(255, 255, 255, 0.7);
+		border-radius: 20px;
+		padding: 40px;
+		@media (max-width: 767px) {
+			width: 100%;
+			left: 0;
+
+		}
+		.index__banner__content--inner{
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			h3{
+				text-align: center;
+				margin-bottom: 50px;
+			}
+			h6{
+				margin-bottom: 30px;
+			}
+		}
+	}
+}

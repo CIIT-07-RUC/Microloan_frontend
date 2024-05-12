@@ -39,3 +39,52 @@
 		}
 	}
 }
+
+.borrower__section{
+	.borrower__points--wrapper{
+		margin-top: 70px;
+		.borrower__point{
+			display: flex;
+			align-items: start;
+			gap: 30px;
+			margin-bottom: 20px;
+			.number--circle--wrapper{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.number--circle{
+				width: 55px;
+				height: 55px;
+				background-color: #75227D;
+				border-radius: 100%;
+				color: #fff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 24px;
+				font-weight: bold;
+			}
+			.vertical--separator{
+				height: 55px;
+				width: 2px;
+				margin-top: 8px;
+				background-color: #000;
+			}
+			.borrower__point--content{
+				text-align: left;
+				.highlight{
+					font-size: 24px;
+					font-weight: bold;
+					margin-bottom: 0;
+				}
+				.downplay{
+					font-size: 20px;
+					font-weight: bold;
+					color: #9B9B9B;
+				}
+
+			}
+		}
+	}
+}

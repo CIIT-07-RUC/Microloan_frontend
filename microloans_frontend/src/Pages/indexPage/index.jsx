@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import banner from '../../Assets/hero.png';
 import investorImg from '../../Assets/investorImg.png';
 import borrowerImg from '../../Assets/borrowerImg.png';
+import Iframe from 'react-iframe'
 
 import './index.scss';
 import Button from 'react-bootstrap/Button';
@@ -94,6 +95,8 @@ export function IndexPage() {
 				</div>
 
 				<div className="separator"></div>
+
+			<a  target href="https://pp.mitid.dk/test-tool/broker/?returnUrl=%2Ftest-tool%2Ffrontend%2F%23%2Fflows%2Fdetails%2Fresult%2F&language=DA&level=SUBSTANTIAL&action=LOG_ON&brokerId=bd46be99-8c6c-4913-934d-c0a73574a967&serviceProviderId=b1bc650b-c664-491f-8cdf-ea1550017251&ssoGroupId=8c0410d7-5239-4392-872b-5506a6df382e&method=LOA&brokerSecurityContext=Test%20Broker%201%20security%20context%20description&referenceText=Log%20p%C3%A5%C2%A0Test%20Service%20Provider%201%C2%A0reference%20text&flowType=LOA_AND_AAL_FLOW&serviceProviderName=Nets%20DanID%20A%2FS">Click on me</a>
 
 				<div className="borrower__section" style={{ textAlign: 'center', marginTop: '20px'}}>
 					<h1 style={{ marginTop: '40px'}}>As a investor</h1>

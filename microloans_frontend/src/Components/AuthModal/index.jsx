@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -6,8 +6,10 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { UsersAPI } from '../../Apis/UserAPI';
 import Alert from 'react-bootstrap/Alert';
+import { ThemeContext } from '../../index';
 
 function AuthModal (props) {
+  const { isUserLoggedIn, setIsUserLoggedIn } = useContext(ThemeContext);
 
   // Register
   const [regEmail, setRegEmail] = useState('');
@@ -36,9 +38,11 @@ function AuthModal (props) {
     .then((data) => {
       console.log("data users func", data)
       setIsLoginSuccessful(true);
+      setIsUserLoggedIn(true);
     })
     .catch((err) => {
-      setIsLoginSuccessful(false)
+      setIsLoginSuccessful(false);
+      setIsUserLoggedIn(false);
       console.log("err.response.data", err.response.data.responseMessage)
       setLoginErrMessage(err.response.data.responseMessage);
     })

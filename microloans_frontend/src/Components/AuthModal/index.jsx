@@ -25,8 +25,23 @@ function AuthModal (props) {
   const [isLoginSuccessful, setIsLoginSuccessful] = useState(null);
   const [loginErrMessage, setLoginErrMessage] = useState('');
 
-  function verifyLogin(e) {
+  async function verifyLogin(e) {
     e.preventDefault();
+    if (loginEmail === '' || loginEmail === null || loginPassword === '' || loginPassword === null) {
+      setIsLoginSuccessful(false);
+      setLoginErrMessage('fields are not valid')
+      return;
+    }
+    await UsersAPI.login(loginEmail, loginPassword)
+    .then((data) => {
+      console.log("data users func", data)
+      setIsLoginSuccessful(true);
+    })
+    .catch((err) => {
+      setIsLoginSuccessful(false)
+      console.log("err.response.data", err.response.data.responseMessage)
+      setLoginErrMessage(err.response.data.responseMessage);
+    })
   }
 
   async function verifyRegister(e) {
@@ -112,10 +127,16 @@ function AuthModal (props) {
                <Alert style={{width: '100%', textAlign: 'center'}} variant='danger'>
                 {registerErrMessage}
               </Alert>
-              :
-              null
-
-              }
+               :
+               null 
+               }
+               { 
+               isLoginSuccessful === true ? 
+               <Alert style={{width: '100%', textAlign: 'center'}} variant='success'>
+                 Succesfully registered
+               </Alert>
+               : null
+               }
             </Modal.Footer>
 
           </Tab>
@@ -146,6 +167,22 @@ function AuthModal (props) {
               </Button>
               </Form>
             </Modal.Body>
+            <Modal.Footer>
+              { isLoginSuccessful === false ? 
+               <Alert style={{width: '100%', textAlign: 'center'}} variant='danger'>
+                {loginErrMessage}
+              </Alert>
+              :
+              null 
+              }
+              { 
+              isLoginSuccessful === true ? 
+              <Alert style={{width: '100%', textAlign: 'center'}} variant='success'>
+                Succesfully logged in   
+              </Alert>
+              : null
+              }
+            </Modal.Footer>
            
           </Tab>
         </Tabs>

@@ -11,6 +11,8 @@ import reportWebVitals from './reportWebVitals';
 import { IndexPage } from './Pages/indexPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { BrowseLoansPage } from './Pages/browseLoansPage/browseLoansPage';
+
 const ThemeContext = createContext();
 
 function ThemeProvider({ children }) {
@@ -56,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <IndexPage/>,
+  },
+  {
+    path: "/browseLoansPage",
+    element: <BrowseLoansPage/>,
   }
 ]);
 

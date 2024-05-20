@@ -30,7 +30,7 @@ export function NavigationMain(props) {
           <Nav className="me-auto">
             <Nav.Link href="#communications">Communications</Nav.Link>
             <NavDropdown title="Loans" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href="browseLoansPage">
                 See all loans
               </NavDropdown.Item>
               <NavDropdown.Divider />

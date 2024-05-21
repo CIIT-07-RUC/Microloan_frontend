@@ -12,3 +12,53 @@
     font-size: 1em;
     color: gray;
   }
+  .post {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .post-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .post-title {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .post-subtitle {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* src/components/PostsGrid.css */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .page-item {
+    margin: 0 5px;
+  }
+  
+  .page-link {
+    text-decoration: none;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .page-link:hover {
+    text-decoration: underline;
+  }

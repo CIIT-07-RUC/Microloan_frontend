@@ -37,6 +37,7 @@ function AuthModal (props) {
     await UsersAPI.login(loginEmail, loginPassword)
     .then((data) => {
       console.log("data users func", data)
+      sessionStorage.setItem('token', data.token);
       setIsLoginSuccessful(true);
       setIsUserLoggedIn(true);
     })

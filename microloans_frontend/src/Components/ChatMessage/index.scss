@@ -1,0 +1,28 @@
+.chat__message{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	.client_1, .client_2{
+		border-radius: 13px;
+		max-width: 500px;
+		padding: 10px 30px;
+		flex-direction: column;
+		gap: 15px;
+	}
+	.client_1{
+		display: flex;
+		justify-content: flex-end;
+		background-color: rgb(248, 227, 179);
+	}
+	.client_2{
+		display: flex;
+		justify-content: flex-start;
+		background-color: rgb(164, 164, 215);
+	}
+	.chat__message--content-top{
+		
+		> span:last-of-type{
+			margin-left: 10px;
+			font-weight: 700;
+		}
+	}
+}

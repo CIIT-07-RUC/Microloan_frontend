@@ -1,0 +1,28 @@
+.chat-page{
+	max-height: 100vh;
+	overflow-x: auto;
+
+	.chat-page__message-wrap{
+		position: relative;
+		height: 75vh;
+	}
+	.chat-page__bottom--section{
+		position: fixed;
+		bottom: 40px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		left: 0;
+		flex-direction: column;
+		> div{
+			width: 50%;
+		}
+		textarea{
+			width: 100%;
+		}
+		button{
+			width: 100%;
+		}
+	}
+}

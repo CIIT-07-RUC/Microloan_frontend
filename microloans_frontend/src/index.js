@@ -9,6 +9,8 @@ import {
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { IndexPage } from './Pages/indexPage';
+import { ChatPage } from './Pages/chatPage';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowseLoansPage } from './Pages/browseLoansPage/browseLoansPage';
@@ -62,6 +64,10 @@ const router = createBrowserRouter([
   {
     path: "/browseLoansPage",
     element: <BrowseLoansPage/>,
+  },
+  {
+    path: "/chat",
+    element: <ChatPage/>,
   }
 ]);
 

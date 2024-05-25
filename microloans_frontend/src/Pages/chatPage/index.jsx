@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as signalR from "@microsoft/signalr";
+import { NavigationMain} from '../../Components/NavigationMain/index.jsx';
 
 export function ChatPage() {
   const [connection, setConnection] = useState(null);
@@ -44,6 +45,8 @@ export function ChatPage() {
   };
 
   return (
+    <>
+    <NavigationMain/>
     <div>
       <input type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)} placeholder="User" />
       <input type="text" value={messageInput} onChange={(e) => setMessageInput(e.target.value)} placeholder="Message" />
@@ -54,6 +57,7 @@ export function ChatPage() {
         ))}
       </ul>
     </div>
+    </>
   );
 }
 

@@ -24,7 +24,7 @@ export function NavigationMain(props) {
     <>
     <Navbar collapseOnSelect expand="lg" className="navigation__wrapper">
       <Container>
-        <Navbar.Brand href="#home">PocketLoan Denmark</Navbar.Brand>
+        <Navbar.Brand href="/">PocketLoan Denmark</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

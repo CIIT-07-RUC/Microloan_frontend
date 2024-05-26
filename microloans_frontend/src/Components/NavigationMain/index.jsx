@@ -28,7 +28,7 @@ export function NavigationMain(props) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#communications">Communications</Nav.Link>
+            <Nav.Link href="chat">Communications</Nav.Link>
             <NavDropdown title="Loans" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="browseLoansPage">
                 See all loans

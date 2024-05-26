@@ -9,7 +9,6 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../index';
 
 export function ChatMessage(props) {
-
   return (
     <>
 		<div className='chat__message'>
@@ -17,10 +16,10 @@ export function ChatMessage(props) {
 				<div className='chat__message--content-top'>
 
 					<span>
-						23.13.2023
+						{props.date}
 					</span>
 					<span>
-						Namedsadksaokdo
+						{props.user}
 					</span>
 				</div>
 				<div className='chat__message--content-bottom'>

@@ -10,4 +10,9 @@ export class UsersAPI {
 	  const response = await api.post('/users/login', { "emailAdress": email, "password": password});
 	  return response.data;
 	}
+
+	static async allUsers() {
+		const response = await api.get('/users/all-users');
+		return response.data;
+	}
 }

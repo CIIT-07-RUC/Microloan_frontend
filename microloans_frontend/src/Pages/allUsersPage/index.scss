@@ -1,0 +1,16 @@
+.user-grid{
+	display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+	gap: 30px;
+	margin-top: 50px;
+
+	.user{
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		img {
+		   height: 200px;
+	   }
+	}
+}

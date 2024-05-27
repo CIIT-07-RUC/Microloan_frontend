@@ -5,13 +5,21 @@ import { ChatMessage } from '../../Components/ChatMessage/index.js';
 import { Row, Container, Col } from 'react-bootstrap';
 import './index.scss';
 import { ThemeContext } from '../../index.js';
+import { useHistory ,useLocation } from 'react-router-dom';
+
 
 export function ChatPage() {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(ThemeContext);
-  const { userEmail, setUserEmail } = useContext(ThemeContext);
+  const { userEmail } = useContext(ThemeContext);
+  const { userId} = useContext(ThemeContext);
+  const location = useLocation();
+
+
+  const [recipientId, setRecipientId] = useState(0);
+
 
   const [connection, setConnection] = useState(null);
-  const [groupName, setGroupName] = useState("defaultGroup");
+  const [groupName, setGroupName] = useState(null);
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -21,11 +29,16 @@ export function ChatPage() {
       .build();
 
     setConnection(newConnection);
-    console.log("CONNECTION")
   }, []);
 
   useEffect(() => {
-    if (connection) {
+    const pathnameurlArr = location.pathname.split('/');
+    const recId = pathnameurlArr[pathnameurlArr.length - 1];
+    setGroupName(recId);
+  }, [])
+
+  useEffect(() => {
+    if (connection && groupName !== null) {
       connection.start()
         .then(async () => {
           console.log("SignalR connection established.");
@@ -43,7 +56,7 @@ export function ChatPage() {
         connection.stop();
       };
     }
-  }, [connection, groupName]);
+  }, [connection, groupName, groupName]);
 
   const sendMessage = async () => {
     if (connection && messageInput) {
@@ -84,12 +97,6 @@ export function ChatPage() {
             />
             <button onClick={sendMessage}>Send</button>
           </div>
-          <input
-            type="text"
-            value={groupName}
-            onChange={(e) => setGroupName(e.target.value)}
-            placeholder="Group Name"
-          />
         </div>
       </Container>
     </>

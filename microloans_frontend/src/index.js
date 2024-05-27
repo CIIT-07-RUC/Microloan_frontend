@@ -67,7 +67,7 @@ const router = createBrowserRouter([
     element: <BrowseLoansPage/>,
   },
   {
-    path: "/chat",
+    path: "/chat/:id",
     element: <ChatPage/>,
   },
   {

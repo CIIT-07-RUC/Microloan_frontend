@@ -3,13 +3,23 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './index.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AuthModal from '../AuthModal';
 import { useContext } from 'react';
 import { ThemeContext } from '../../index';
 
 export function NavigationMain(props) {
+
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(ThemeContext);
+  const { userId } = useContext(ThemeContext);
+  const [chatUrl, setChatUrl] = useState('');
+  
+
+  useEffect(() => {
+      setChatUrl('/chat/' + userId);
+   
+  }, [userId])
+  
 
   const [defaultKey, setDefaultKey] = useState('register');
   const [show, setShow] = useState(false);
@@ -17,7 +27,6 @@ export function NavigationMain(props) {
   const handleShow = (key) => { 
     setShow(true)
     setDefaultKey(key);
-    console.log("KEYYY", key)
   }
 
   return (
@@ -28,7 +37,8 @@ export function NavigationMain(props) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="chat">Communications</Nav.Link>
+            <Nav.Link href={chatUrl}>Communications</Nav.Link>
+            <Nav.Link href="/users">All users</Nav.Link>
             <NavDropdown title="Loans" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="browseLoansPage">
                 See all loans

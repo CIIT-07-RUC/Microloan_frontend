@@ -36,7 +36,6 @@ export function AllUsersPage() {
 
 	useEffect(() => {
 		fetchCast();
-		console.log("allUsers", allUsers)
 	}, [isLoadedDone])
 
     const User = (props) => {

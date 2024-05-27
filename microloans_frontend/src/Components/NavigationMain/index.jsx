@@ -29,6 +29,11 @@ export function NavigationMain(props) {
     setDefaultKey(key);
   }
 
+  const handleLogout = () => {
+    sessionStorage.removeItem('token'); 
+    setIsUserLoggedIn(false);
+  }
+
   return (
     <>
     <Navbar collapseOnSelect expand="lg" className="navigation__wrapper">
@@ -57,7 +62,13 @@ export function NavigationMain(props) {
               Login
             </Nav.Link>
           </Nav>
-           : null}
+           : 
+           <Nav>
+           <Nav.Link className='nav-link-button' onClick={() => handleLogout()}   href="#">
+              Logout
+            </Nav.Link>
+          </Nav>
+           }
         </Navbar.Collapse>
       </Container>
     </Navbar>

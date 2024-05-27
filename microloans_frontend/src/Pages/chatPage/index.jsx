@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import * as signalR from "@microsoft/signalr";
 import { NavigationMain } from '../../Components/NavigationMain/index.jsx';
 import { ChatMessage } from '../../Components/ChatMessage/index.js';
-import { Row, Container, Col } from 'react-bootstrap';
+import { Row, Container, Col, Alert } from 'react-bootstrap';
 import './index.scss';
 import { ThemeContext } from '../../index.js';
 import { useHistory ,useLocation } from 'react-router-dom';
@@ -97,6 +97,7 @@ export function ChatPage() {
           </ul>
         </div>
         <div className="chat-page__bottom--section">
+          {isUserLoggedIn ? 
           <div>
             <textarea
               type="text"
@@ -108,6 +109,11 @@ export function ChatPage() {
             Send
             </Button>
           </div>
+          :
+          <Alert  variant='danger'>
+          Login first to access message-features
+         </Alert>  
+          }
         </div>
       </Container>
     </>

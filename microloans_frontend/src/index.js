@@ -22,6 +22,8 @@ function ThemeProvider({ children }) {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [userId, setUserId] = useState(0);
   const [userEmail, setUserEmail] = useState(0);
+  const [roleId, setRoleId] = useState(0);
+  const [isInvestor, setIsInvestor] = useState();
 
   function parseJwt (token) {
     var base64Url = token.split('.')[1];
@@ -36,10 +38,16 @@ function ThemeProvider({ children }) {
     if (sessionStorage.getItem('token') !== null ) {
       setIsUserLoggedIn(true);
       const jwt = parseJwt(sessionStorage.getItem('token'));
+      console.log("jwt", jwt)
       setUserId(jwt['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'])
       setUserEmail(jwt['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'])
+      setRoleId(jwt['RoleId'])
+      setIsInvestor(jwt['IsInvestor'])
+
     }
   }, [])
+
+
   
 
   return (
@@ -49,7 +57,11 @@ function ThemeProvider({ children }) {
       userId, 
       setUserId,
       userEmail,
-      setUserEmail
+      setUserEmail,
+      roleId, 
+      setRoleId,
+      isInvestor, 
+      setIsInvestor
       }}>
       {children}
     </ThemeContext.Provider>

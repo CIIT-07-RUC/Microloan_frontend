@@ -1,19 +1,23 @@
 .chat__message{
-	margin-top: 15px;
-	margin-bottom: 15px;
-	.client_1, .client_2{
+	margin-top: 2%;
+	margin-bottom: 25px;
+	&:has(.sender){
+		display: flex;
+		justify-content: end;
+	}
+	.recipient, .sender{
 		border-radius: 13px;
-		max-width: 500px;
+		width: 500px;
 		padding: 10px 30px;
 		flex-direction: column;
 		gap: 15px;
 	}
-	.client_1{
+	.recipient{
 		display: flex;
 		justify-content: flex-end;
 		background-color: rgb(248, 227, 179);
 	}
-	.client_2{
+	.sender{
 		display: flex;
 		justify-content: flex-start;
 		background-color: rgb(164, 164, 215);

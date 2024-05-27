@@ -6,6 +6,7 @@ import { Row, Container, Col } from 'react-bootstrap';
 import './index.scss';
 import { ThemeContext } from '../../index.js';
 import { useHistory ,useLocation } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 
 export function ChatPage() {
@@ -41,11 +42,16 @@ export function ChatPage() {
     if (connection && groupName !== null) {
       connection.start()
         .then(async () => {
-          console.log("SignalR connection established.");
           await connection.invoke("AddToGroup", groupName);
 
           connection.on("ReceiveMessage", (user, message) => {
-            setMessages((prevMessages) => [...prevMessages, `${user} says: ${message}`]);
+            let userType = '';
+            if (userEmail === user ) { userType = 'recipient'}
+            else { userType = 'sender';}
+            console.log("SignalR connection established.", user, message);
+            const messageArr = [ message, userType, user, new Date(Date.now()).toLocaleTimeString() ]
+            console.log("messageObj", messageArr)
+            setMessages((prevMessages) => [...prevMessages, messageArr]);
           });
         })
         .catch((err) => {
@@ -76,14 +82,17 @@ export function ChatPage() {
         <div className="chat-page__message-wrap">
           <ul>
             {messages.map((msg, index) => (
+              <>
+              {console.log("dsdadsa", msg)}
               <ChatMessage
                 key={index}
-                date={new Date(Date.now()).toLocaleTimeString()}
-                msg={msg}
+                date={msg[3]}
+                msg={msg[0]}
                 index={index}
-                user={userEmail}
-                typeOfUser="client_1"
-              />
+                user={msg[2]}
+                typeOfUser={msg[1]}
+                />
+                </>
             ))}
           </ul>
         </div>
@@ -95,7 +104,9 @@ export function ChatPage() {
               onChange={(e) => setMessageInput(e.target.value)}
               placeholder="Message"
             />
-            <button onClick={sendMessage}>Send</button>
+            <Button onClick={sendMessage}>
+            Send
+            </Button>
           </div>
         </div>
       </Container>

@@ -38,14 +38,14 @@ export function ChatPage() {
         .then(async () => {
           await connection.invoke("AddToGroup", userId, groupName);
           connection.on("ReceiveMessage", (user, message) => {
-    
-            const userType = userEmail === user ? 'sender' : 'recipient';
             let messageArr;
             if (message.includes("|")) {
               const messageDataArr = message.split('|');
+                const userType = userEmail === messageDataArr[2] ? 'sender' : 'recipient';
                messageArr = [messageDataArr[0], userType, messageDataArr[2], messageDataArr[1]];
             }
             else {
+               const userType = userEmail === user ? 'sender' : 'recipient';
                messageArr = [message, userType, userEmail, new Date(Date.now()).toLocaleTimeString()];
             }
             setMessages((prevMessages) => [...prevMessages, messageArr]);

@@ -20,6 +20,7 @@ export function AllUsersPage() {
 	const fetchCast = async () => {
 		try {
 		  const result = await UsersAPI.allUsers();
+		  console.log("RESULT BAM", result)
 		  setAllUsers([...result]);
 		  setIsLoadedDone(true);
 		 //  setCastData(result);
@@ -36,6 +37,7 @@ export function AllUsersPage() {
         <>
 		<NavigationMain/>
 		<Container>
+		<h1 style={{ marginTop: '50px',  marginBottom: '50px', textAlign: 'center'}}>All active users</h1>
           <div className="user-grid">
 			{ isLoadedDone ? 
 			allUsers.map((el) => {

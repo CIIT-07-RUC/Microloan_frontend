@@ -15,4 +15,9 @@ export class UsersAPI {
 		const response = await api.get('/users/all-users');
 		return response.data;
 	}
+
+	static async getUserById(id) {
+		const response = await api.get('/users/' + id);
+		return response.data;
+	}
 }

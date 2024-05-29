@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowseLoansPage } from './Pages/browseLoansPage/browseLoansPage';
 import { AllUsersPage } from './Pages/allUsersPage';
+import { ChatHistoryPage } from './Pages/chatHistoryPage';
 
 const ThemeContext = createContext();
 
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
   {
     path: "/chat/:id",
     element: <ChatPage/>,
+  },
+  {
+    path: "/chat-history",
+    element: <ChatHistoryPage/>,
   },
   {
     path: '/users',

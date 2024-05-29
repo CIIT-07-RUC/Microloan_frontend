@@ -42,7 +42,16 @@ export function NavigationMain(props) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href={chatUrl}>Communications</Nav.Link>
+          <NavDropdown title="Communications" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href={chatUrl}>
+                Conversation with yourself
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/chat-history">
+                Chat history
+              </NavDropdown.Item>
+          </NavDropdown>
+
             <Nav.Link href="/users">All users</Nav.Link>
             <NavDropdown title="Loans" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="browseLoansPage">

@@ -58,3 +58,24 @@ h6{
   background-color: #000;
   margin: 50px 0;
 }
+
+.user-grid{
+	display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+	gap: 30px;
+	margin-top: 50px;
+
+	
+}
+
+.user-grid .user{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.user-grid .user img {
+  height: 200px;
+}

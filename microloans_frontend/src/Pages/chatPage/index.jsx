@@ -36,7 +36,9 @@ export function ChatPage() {
     if (connection && groupName) {
       connection.start()
         .then(async () => {
-          await connection.invoke("AddToGroup", userId, groupName);
+          await connection.invoke("AddToGroup", userId, groupName).then(e => console.log("GGG", e))
+          const conversationList = await connection.invoke("GetConversationsByUser", userId);
+          console.log("conversationList", conversationList)
           connection.on("ReceiveMessage", (user, message) => {
             let messageArr;
             if (message.includes("|")) {
@@ -56,6 +58,8 @@ export function ChatPage() {
         .catch((err) => {
           console.error(err.toString());
         });
+
+
 
       return () => {
         connection.stop();

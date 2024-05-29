@@ -37,20 +37,21 @@ export function ChatPage() {
       connection.start()
         .then(async () => {
           await connection.invoke("AddToGroup", userId, groupName);
-
           connection.on("ReceiveMessage", (user, message) => {
+    
             const userType = userEmail === user ? 'sender' : 'recipient';
-            const messageArr = [message, userType, user, new Date(Date.now()).toLocaleTimeString()];
+            let messageArr;
+            if (message.includes("|")) {
+              const messageDataArr = message.split('|');
+               messageArr = [messageDataArr[0], userType, messageDataArr[2], messageDataArr[1]];
+            }
+            else {
+               messageArr = [message, userType, userEmail, new Date(Date.now()).toLocaleTimeString()];
+            }
             setMessages((prevMessages) => [...prevMessages, messageArr]);
           });
-
-          // Load previous messages when joining the group
-          console.log("userEmail, groupNameuserEmail, groupName", userId, groupName)
           const previousMessages = await connection.invoke("LoadPreviousMessages", userId, groupName);
-          console.log("previousMessagespreviousMessagespreviousMessagespreviousMessages", previousMessages)
-          previousMessages.forEach((msg) => {
-            setMessages((prevMessages) => [...prevMessages, msg]);
-          });
+          console.log("previousMessages", previousMessages);
         })
         .catch((err) => {
           console.error(err.toString());
@@ -65,7 +66,8 @@ export function ChatPage() {
   const sendMessage = async () => {
     if (connection && messageInput) {
       try {
-        await connection.invoke("SendPrivateMessage",  userId, groupName, userEmail, messageInput);
+
+        await connection.invoke("SendPrivateMessage",  userId, groupName, userEmail, messageInput, new Date(Date.now()).toLocaleTimeString());
         setMessageInput("");
       } catch (error) {
         console.error(error.toString());

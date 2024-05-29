@@ -55,7 +55,6 @@ function AuthModal (props) {
     e.preventDefault();
     await UsersAPI.register(regEmail, regPhone, regPassword, regConfirmPassword, isInvestor)
     .then((data) => {
-      console.log("data users func", data)
       setIsRegisterSuccessful(true);
     })
     .catch((err) => {

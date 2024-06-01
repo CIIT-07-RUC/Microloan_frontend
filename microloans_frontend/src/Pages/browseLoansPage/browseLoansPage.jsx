@@ -1,22 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
 import { NavigationMain} from '../../Components/NavigationMain/index.jsx';
-import { useState } from 'react';
 import './browseLoansPage.scss';
 import borrowerImg from '../../Assets/borrowerImg.png';
+import { BorrowerProposalsAPI } from '../../Apis//BorrowerProposalsAPI.js';
+import { UsersAPI } from '../../Apis//UserAPI.js';
+
 
 export function BrowseLoansPage() {
   
     const [proposalCount, setProposalCount] = useState(0);
+    const [isLoadedDone, setIsLoadedDone] = useState(false);
+  	const [borrowerProposals, setBorrowerProposals] = useState([]);
 
-    const Post = ({ image, title, subtitle }) => {
-        return (
-          <div className="post">
-            <img src={borrowerImg} alt={title} className="post-image" />
-            <h3 className="post-title">{title}</h3>
-            <p className="post-subtitle">{subtitle}</p>
-          </div>
-        );
-      };
+
+    useEffect(() => {
+      if (!isLoadedDone) {
+        fetchAllBorrowerProposals();
+      }
+    }, [isLoadedDone])
+
+    const fetchAllBorrowerProposals = async () => {
+      try {
+        const result = await BorrowerProposalsAPI.getAllBorrowerProposals();
+        console.log("RESULT BAM", result)
+        setProposalCount(result.length)
+        setBorrowerProposals([...result]);
+        setIsLoadedDone(true);
+       //  setCastData(result);
+      } catch (e) {
+        console.warn("ERROR", e);
+      }
+    }
+
+      
     
     
       const PostsGrid = ({ posts }) => {
@@ -32,16 +48,25 @@ export function BrowseLoansPage() {
       return (
         <div>
           <div className="posts-grid">
-            {currentPosts.map((post, index) => (
-              <Post key={index} image={post.borrowerImg} title={post.title} subtitle={post.subtitle} />
+            {borrowerProposals.map((post, index) => (
+              <>
+               <div className="post">
+                  <img src={borrowerImg} alt={post.title} className="post-image" />
+                  <h3 className="post-title">{post.title}</h3>
+                  <h1>BorrowerId  {post.borrowerId} </h1>
+                  <p className="post-subtitle">Proposal amount: {post.proposalAmount}DKK</p>
+                  <p className="post-subtitle">Proposal Interest Rate: {post.proposalInterestRate}%</p>
+
+                </div>
+              </>
             ))}
           </div>
-          <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+          {/* <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} /> */}
         </div>
       );
     };
     
-    const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+/*     const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
       const pageNumbers = [];
     
       for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -62,29 +87,16 @@ export function BrowseLoansPage() {
         </nav>
       );
     };
-    
-    const posts = [
-        { borrowerImg: 'borrowerImg.png', title: 'Loan 1', subtitle: 'Subtitle 1' },
-        { borrowerImg: 'borrowerImg.png', title: 'Loan 2', subtitle: 'Subtitle 2' },
-        { borrowerImg: 'borrowerImg.png', title: 'Loan 3', subtitle: 'Subtitle 3' },
-        { borrowerImg: 'borrowerImg.png', title: 'Loan 4', subtitle: 'Subtitle 4' },
-        { borrowerImg: 'borrowerImg.png', title: 'Loan 5', subtitle: 'Subtitle 5' },
-        { borrowerImg: 'borrowerImg.png', title: 'Loan 6', subtitle: 'Subtitle 6' },
-        { borrowerImg: 'borrowerImg.png', title: 'Loan 7', subtitle: 'Subtitle 7' },
-        { borrowerImg: 'borrowerImg.png', title: 'Loan 8', subtitle: 'Subtitle 8' },
-      ];
-      
-
+ */
 
     return (
     <>
     <NavigationMain />
-    <div className="browse-loans-page">
+      <div className="browse-loans-page">
         <h1 className="title">Borrower Proposals</h1>
         <p className="subtitle">Found {proposalCount} proposals</p>
-        <h1>Posts</h1>
-            <PostsGrid posts={posts} />
-    </div></>
+        <PostsGrid posts={borrowerProposals} />
+      </div></>
     
 
     

@@ -13,7 +13,7 @@ export class BorrowerProposalsAPI {
 	}
 
 	static async getAllBorrowerProposalsById(id) {
-		const response = await api.get('/borrower-proposals/' + id);
+		const response = await api.get('/borrower-proposals/proposal-by-id?id=' + id);
 		return response.data;
 	}
 

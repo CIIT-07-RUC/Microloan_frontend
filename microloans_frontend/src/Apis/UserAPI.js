@@ -17,7 +17,7 @@ export class UsersAPI {
 	}
 
 	static async getUserById(id) {
-		const response = await api.get('/users/' + id);
+		const response = await api.get('/users?id=' + id);
 		return response.data;
 	}
 }

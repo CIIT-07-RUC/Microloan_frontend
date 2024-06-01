@@ -1,0 +1,21 @@
+.borrower-proposal__page{
+	display: flex;
+	align-items: center;
+	margin-top: 100px;
+	flex-direction: column;
+
+	.additional-info{
+		width: 100%;
+		display: flex;
+		margin-top: 50px;
+		font-weight: 700;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		text-align: center;
+		> div {
+			flex-basis: 50%;
+			max-width: 50%;
+		}
+	}
+	
+}

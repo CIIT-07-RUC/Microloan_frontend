@@ -4,14 +4,19 @@ import './browseLoansPage.scss';
 import borrowerImg from '../../Assets/borrowerImg.png';
 import { BorrowerProposalsAPI } from '../../Apis//BorrowerProposalsAPI.js';
 import { UsersAPI } from '../../Apis//UserAPI.js';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 export function BrowseLoansPage() {
-  
+    const navigate = useNavigate();
     const [proposalCount, setProposalCount] = useState(0);
     const [isLoadedDone, setIsLoadedDone] = useState(false);
   	const [borrowerProposals, setBorrowerProposals] = useState([]);
 
+    const navigateToBorrowerProposalPage = (id) => {
+      navigate(`/borrower-proposal/${id}`, {replace:true});
+      window.location.reload();
+    }
 
     useEffect(() => {
       if (!isLoadedDone) {
@@ -50,7 +55,7 @@ export function BrowseLoansPage() {
           <div className="posts-grid">
             {borrowerProposals.map((post, index) => (
               <>
-               <div className="post">
+               <div className="post" onClick={() => navigateToBorrowerProposalPage(post.id)}>
                   <img src={borrowerImg} alt={post.title} className="post-image" />
                   <h3 className="post-title">{post.title}</h3>
                   <h1>BorrowerId  {post.borrowerId} </h1>

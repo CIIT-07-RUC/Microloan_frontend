@@ -16,6 +16,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowseLoansPage } from './Pages/browseLoansPage/browseLoansPage';
 import { AllUsersPage } from './Pages/allUsersPage';
 import { ChatHistoryPage } from './Pages/chatHistoryPage';
+import { BorrowerProposalPage } from './Pages/BorrowerProposalPage';
+
 
 const ThemeContext = createContext();
 
@@ -90,6 +92,10 @@ const router = createBrowserRouter([
   {
     path: '/users',
     element: <AllUsersPage/>
+  },
+  {
+    path: '/borrower-proposal/:id',
+    element: <BorrowerProposalPage/>
   }
 ]);
 

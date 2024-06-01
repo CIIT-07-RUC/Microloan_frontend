@@ -15,10 +15,29 @@ import userImg from '../../Assets/user.png';
 
 export function BorrowerProposalPage() {
   let {id} = useParams();
+  const navigate = useNavigate();
   const [proposalCount, setProposalCount] = useState(0);
   const [isLoadedDone, setIsLoadedDone] = useState(false);
+  const [isUserLoadedDone, setIsUserLoadedDone] = useState(false);
+
   const [borrowerProposal, setBorrowerProposal] = useState(null);
   const [userData, setUserData] = useState(null);
+
+  const createConnectionToChat = (id) => {
+		navigate(`/chat/${id}`, {replace:true});
+		window.location.reload();
+  }
+
+  const createConnectionOtherLoans = () => {
+    navigate(`/browseLoansPage`, {replace:true});
+		window.location.reload();
+  }
+
+
+  
+
+
+
 
   useEffect(() => {
     if (!isLoadedDone) {
@@ -29,11 +48,14 @@ export function BorrowerProposalPage() {
   const fetchAllBorrowerProposals = async () => {
     try {
       const result = await BorrowerProposalsAPI.getAllBorrowerProposalsById(id);
-      console.log("RESULT BAM", result)
       setProposalCount(result.length)
       setBorrowerProposal(result);
-      //const userResult = await UsersAPI.getUserById(result)
       setIsLoadedDone(true);
+      const borrowerResult = await UsersAPI.getBorrowerById(result.borrowerId);
+      const userResult = await UsersAPI.getUserById(borrowerResult.userAccountId);
+      setUserData(userResult)
+      setIsUserLoadedDone(true)
+      console.log("userResult", userResult)
      //  setCastData(result);
     } catch (e) {
       console.warn("ERROR", e);
@@ -43,7 +65,7 @@ export function BorrowerProposalPage() {
       return (
         <>
 		    <NavigationMain />
-        { isLoadedDone ? 
+        { isLoadedDone && isUserLoadedDone? 
         <Container className="borrower-proposal__page">
           <h1>{borrowerProposal.title}</h1>
           <img src={borrowerImg} className="post-image" />
@@ -51,14 +73,24 @@ export function BorrowerProposalPage() {
 
           <div className="additional-info">
             <div>Loan Amount: {borrowerProposal.proposalAmount}DKK </div>
-            <div>Name of borrower: {borrowerProposal.proposalAmount}</div>
             <div>Organization: {borrowerProposal.organization}</div>
             <div>Proposed months: {borrowerProposal.proposalMonths}</div>
             <div>Proposed interest rate: {borrowerProposal.proposalInterestRate}%</div>
-            <div>Borrower rating: Not yet</div>
-
-
           </div>
+
+          <div className="additional-info">
+            <div>First name: {userData.firstName}</div>
+            <div>Last name: {userData.lastName}</div>
+            <div>Phone: {userData.phoneNumber}</div>
+            <div>Email Adress: {userData.emailAdress}</div>
+            <div>Borrower rating: Not yet</div>
+          </div>
+          <div className="button-wrapper">
+            <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Invest money in loan</Button>
+            <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Send private message</Button>
+            <Button variant="primary" type='submit' onClick={() => createConnectionOtherLoans()}>Check other loans</Button>
+          </div>
+
 
 
         </Container>

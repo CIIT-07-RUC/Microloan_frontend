@@ -17,5 +17,13 @@
 			max-width: 50%;
 		}
 	}
+
+	.button-wrapper{
+		width: 33%;
+		margin-top: 100px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
 	
 }

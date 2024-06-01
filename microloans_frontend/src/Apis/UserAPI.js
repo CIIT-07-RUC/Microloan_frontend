@@ -17,7 +17,16 @@ export class UsersAPI {
 	}
 
 	static async getUserById(id) {
-		const response = await api.get('/users?id=' + id);
+		const response = await api.get('/users/' + id);
 		return response.data;
 	}
+
+	static async getBorrowerById(id) {
+		const response = await api.get('/users/borrower?id=' + id);
+		return response.data;
+	}
+
+
+
+
 }

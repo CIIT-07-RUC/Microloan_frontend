@@ -21,6 +21,7 @@ export function BorrowerProposalPage() {
   const [proposalCount, setProposalCount] = useState(0);
   const [isLoadedDone, setIsLoadedDone] = useState(false);
   const [isUserLoadedDone, setIsUserLoadedDone] = useState(false);
+  const [proposalStatus, setProposalStatus] = useState(false);
 
   const [borrowerProposalAccepted, setBorrowerProposalAccepted] = useState(false);
 
@@ -53,6 +54,7 @@ export function BorrowerProposalPage() {
     }
   }
 
+
   useEffect(() => {
     if (!isLoadedDone) {
       fetchAllBorrowerProposals();
@@ -65,11 +67,15 @@ export function BorrowerProposalPage() {
       setProposalCount(result.length)
       setBorrowerProposal(result);
       setIsLoadedDone(true);
+      const proposalStatus = await BorrowerProposalsAPI.getAllBorrowerProposalStatus(result.id);
+      console.log("proposalStatus", proposalStatus)
+      setProposalStatus(proposalStatus);
       const borrowerResult = await UsersAPI.getBorrowerById(result.borrowerId);
       const userResult = await UsersAPI.getUserById(borrowerResult.userAccountId);
       setUserData(userResult)
       setIsUserLoadedDone(true)
       console.log("userResult", userResult)
+
      //  setCastData(result);
     } catch (e) {
       console.warn("ERROR", e);
@@ -102,19 +108,32 @@ export function BorrowerProposalPage() {
             <div>Email Adress: {userData.emailAdress}</div>
             <div>Borrower rating: Not yet</div>
           </div>
-          <div className="button-wrapper">
-          {isUserLoggedIn ? 
+          { proposalStatus ? 
+          <Alert variant='warning' >
+            Proposal is not available anymore 
+          </Alert>
+          : 
+          <Alert variant='info' >
+          Proposal is still available  
+        </Alert>
+          }
+          <div className="button-wrapper" style={{ marginBottom: '50px'}}>
+          {isUserLoggedIn? 
             <>
               { isInvestor !== "False" ?
-               !borrowerProposalAccepted ? 
-              <Button variant="primary" type='submit' onClick={() => createLoanConfirmationFunc(borrowerProposal.id)}>Invest money in loan</Button>
+               !borrowerProposalAccepted  ? 
+               <> 
+                { !proposalStatus  ? 
+               <Button variant="primary" type='submit' onClick={() => createLoanConfirmationFunc(borrowerProposal.id)}>Invest money in loan</Button>
+               : null }
+               </>
               : 
               <Alert variant='success'>
               Borrower proposal was accepted
               </Alert>
               : 
               <Alert variant='danger'>
-              You are not investor
+              You are not investor  
               </Alert>
               }
               <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Send private message</Button>

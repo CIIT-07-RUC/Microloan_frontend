@@ -26,4 +26,10 @@ export class BorrowerProposalsAPI {
 		const response = await api.get('/borrower-proposals/' + id);
 		return response.data;
 	}
+
+	static async getAllBorrowerProposalStatus(id) {
+		console.log("idd", id)
+		const response = await api.get('/borrower-proposals/borrower-proposal-status?id=' + id);
+		return response.data;
+	}
 }

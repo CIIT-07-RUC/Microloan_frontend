@@ -58,7 +58,7 @@ export function NavigationMain(props) {
                 See all loans
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item href="createProposal">
                 Create loan
               </NavDropdown.Item>
             </NavDropdown>

@@ -17,6 +17,7 @@ import { BrowseLoansPage } from './Pages/browseLoansPage/browseLoansPage';
 import { AllUsersPage } from './Pages/allUsersPage';
 import { ChatHistoryPage } from './Pages/chatHistoryPage';
 import { BorrowerProposalPage } from './Pages/BorrowerProposalPage';
+import { BorrowerProposalFormPage } from './Pages/BorrowerProposalFormPage';
 
 
 const ThemeContext = createContext();
@@ -90,13 +91,18 @@ const router = createBrowserRouter([
     element: <ChatHistoryPage/>,
   },
   {
+    path: '/createProposal',
+    element: <BorrowerProposalFormPage/>
+  },
+  {
     path: '/users',
     element: <AllUsersPage/>
   },
   {
     path: '/borrower-proposal/:id',
     element: <BorrowerProposalPage/>
-  }
+  },
+ 
 ]);
 
 

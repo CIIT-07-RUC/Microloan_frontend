@@ -26,13 +26,14 @@ export function BorrowerProposalFormPage() {
 	const [organization, setOrganization] = useState("");
 	const [responseMessage, setResponseMessage] = useState("");
 	const [isOperationSuccessful, setIsOperationSuccessful] = useState(false);
-
+	const [title, setTitle] = useState('');
+	const [description, setDescription] = useState('');
   
   
 	const createBorrowerProposalFunc = async (e) => {
 		e.preventDefault();
 		try{
-			const result = await BorrowerProposalsAPI.createBorrowerProposal(roleId, proposalInterestRate, proposalAmount, proposalMonths, organization );
+			const result = await BorrowerProposalsAPI.createBorrowerProposal(roleId, proposalInterestRate, proposalAmount, proposalMonths, organization, title, description );
 			setIsOperationSuccessful(result.isRegistrationSuccessful)
 			setResponseMessage(result.responseMessage);
 			console.log("RESULTTT", result);
@@ -59,7 +60,24 @@ export function BorrowerProposalFormPage() {
 				:
 					
 				<Form style={{width: '50%'}} onSubmit={createBorrowerProposalFunc}>
-
+					<Form.Group className="mb-3" controlId="">
+						<Form.Label>Title</Form.Label>
+						<Form.Control
+							type="text"
+							placeholder=""
+							onChange={e => setTitle(e.target.value)}
+							autoFocus
+						/>
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="">
+						<Form.Label>Description</Form.Label>
+						<Form.Control
+							type="text"
+							placeholder=""
+							onChange={e => setDescription(e.target.value)}
+							autoFocus
+						/>
+					</Form.Group>
 					<Form.Group className="mb-3" controlId="">
 						<Form.Label>Proposal interest rate</Form.Label>
 						<Form.Control
@@ -67,8 +85,8 @@ export function BorrowerProposalFormPage() {
 							onChange={e => setProposalInterestRate(e.target.value)}
 							autoFocus
 						/>
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="">
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="">
 						<Form.Label>Proposal amount</Form.Label>
 						<Form.Control
 							type="text"
@@ -76,8 +94,8 @@ export function BorrowerProposalFormPage() {
 							placeholder=""
 							autoFocus
 						/>
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="">
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="">
 						<Form.Label>Months proposed</Form.Label>
 						<Form.Control
 							type="text"
@@ -85,8 +103,8 @@ export function BorrowerProposalFormPage() {
 							placeholder=""
 							autoFocus
 						/>
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="">
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="">
 						<Form.Label>Organization: (optional)</Form.Label>
 						<Form.Control
 							type="text"

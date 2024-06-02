@@ -2,8 +2,8 @@ import api from './AxiosMain.js';
 
 export class BorrowerProposalsAPI {
 
-	static async createBorrowerProposal(borrowerId, interestRate, proposalAmount, proposalMonths, organization ) {
-	  const response = await api.post('/borrower-proposals', { "borrowerId": borrowerId ,"proposalInterestRate": interestRate, "proposalAmount": proposalAmount, "proposalMonths": proposalMonths, "organization": organization });
+	static async createBorrowerProposal(borrowerId, interestRate, proposalAmount, proposalMonths, organization, title, description ) {
+	  const response = await api.post('/borrower-proposals', { "borrowerId": borrowerId ,"proposalInterestRate": interestRate, "proposalAmount": proposalAmount, "proposalMonths": proposalMonths, "organization": organization, "title": title, "description": description });
 	  return response.data;
 	}
 

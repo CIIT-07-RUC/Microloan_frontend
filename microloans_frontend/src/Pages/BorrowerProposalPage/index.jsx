@@ -53,12 +53,6 @@ export function BorrowerProposalPage() {
     }
   }
 
-
-  
-
-
-
-
   useEffect(() => {
     if (!isLoadedDone) {
       fetchAllBorrowerProposals();
@@ -86,7 +80,10 @@ export function BorrowerProposalPage() {
         <>
 		    <NavigationMain />
         { isLoadedDone && isUserLoadedDone? 
+        
         <Container className="borrower-proposal__page">
+            <h1 style={{  marginBottom: '50px', textAlign: 'center'}}>Borrower proposal:</h1>
+
           <h1>{borrowerProposal.title}</h1>
           <img src={borrowerImg} className="post-image" />
           <p>{borrowerProposal.description}</p>

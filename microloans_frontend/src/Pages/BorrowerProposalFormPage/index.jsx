@@ -45,8 +45,9 @@ export function BorrowerProposalFormPage() {
       return (
         <>
 		<NavigationMain/>
+		<h1 style={{ marginTop: '50px',  marginBottom: '50px', textAlign: 'center'}}>Create borrower proposal</h1>
 		<Container style={{ marginTop: '50px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
-		
+
 
 		{ isUserLoggedIn ? 
 			<>

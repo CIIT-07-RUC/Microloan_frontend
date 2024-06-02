@@ -1,6 +1,6 @@
 .browse-loans-page {
     text-align: center;
-    padding-top: 20px; /* Adjust this padding as needed */
+    padding-top: 20px; 
   }
   
   .title {
@@ -13,6 +13,7 @@
     color: gray;
   }
   .post {
+    cursor: pointer;
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;

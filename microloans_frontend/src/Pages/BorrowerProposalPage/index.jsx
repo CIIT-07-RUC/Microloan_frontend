@@ -2,19 +2,21 @@ import React from 'react';
 import { NavigationMain} from '../../Components/NavigationMain/index.jsx';
 import { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { User } from '../../Components/User/index.jsx'
 import Button from 'react-bootstrap/Button';
 import borrowerImg from '../../Assets/borrowerImg.png';
+import { ThemeContext } from '../../index.js';
 
 import './index.scss';
 import Container from 'react-bootstrap/Container';
+import { Alert } from 'react-bootstrap';
 
 import { BorrowerProposalsAPI } from '../../Apis//BorrowerProposalsAPI.js';
 import { UsersAPI } from '../../Apis//UserAPI.js';
-import userImg from '../../Assets/user.png';
 
 export function BorrowerProposalPage() {
   let {id} = useParams();
+  const { isUserLoggedIn, userEmail, userId } = useContext(ThemeContext);
+
   const navigate = useNavigate();
   const [proposalCount, setProposalCount] = useState(0);
   const [isLoadedDone, setIsLoadedDone] = useState(false);
@@ -86,8 +88,16 @@ export function BorrowerProposalPage() {
             <div>Borrower rating: Not yet</div>
           </div>
           <div className="button-wrapper">
-            <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Invest money in loan</Button>
-            <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Send private message</Button>
+          {isUserLoggedIn ? 
+            <>
+              <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Invest money in loan</Button>
+              <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Send private message</Button>
+            </>
+            : 
+            <Alert variant='danger'>
+            Login first to interract with this borrower-proposal
+            </Alert>
+          }
             <Button variant="primary" type='submit' onClick={() => createConnectionOtherLoans()}>Check other loans</Button>
           </div>
 

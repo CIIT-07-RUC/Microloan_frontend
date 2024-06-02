@@ -53,7 +53,8 @@ function AuthModal (props) {
       return;
     }
     e.preventDefault();
-    await UsersAPI.register(regEmail, regPhone, regPassword, regConfirmPassword, isInvestor)
+
+    await UsersAPI.register(regEmail, regPhone, regPassword, regConfirmPassword, JSON.parse(isInvestor))
     .then((data) => {
       setIsRegisterSuccessful(true);
     })

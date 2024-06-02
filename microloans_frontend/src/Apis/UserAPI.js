@@ -2,7 +2,7 @@ import api from './AxiosMain.js';
 
 export class UsersAPI {
 	static async register(email, phone, password, confirmPassword, isInvestor) {
-	  const response = await api.post('/users', { "emailAdress": email, "phoneNumber": phone, "password": password, "confirmPassword": confirmPassword, "isinvesstor":isInvestor });
+	  const response = await api.post('/users', { "emailAdress": email, "phoneNumber": phone, "password": password, "confirmPassword": confirmPassword, "isInvestor":isInvestor });
 	  return response.data;
 	}
 

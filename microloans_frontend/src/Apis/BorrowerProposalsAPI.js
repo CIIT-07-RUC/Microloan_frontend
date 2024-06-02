@@ -17,8 +17,8 @@ export class BorrowerProposalsAPI {
 		return response.data;
 	}
 
-	static async createLoanConfirmation(borrowerProposalId, confirmationDate ) {
-		const response = await api.post('/borrower-proposals/loan-confirmation', { "borrowerProposalId": borrowerProposalId, "confirmationDate": confirmationDate });
+	static async createLoanConfirmation(investorId, borrowerProposalId, confirmationDate ) {
+		const response = await api.post('/borrower-proposals/loan-confirmation', { "investorId": investorId ,"borrowerProposalId": borrowerProposalId, "confirmationDate": confirmationDate });
 		return response.data;
 	  }
 

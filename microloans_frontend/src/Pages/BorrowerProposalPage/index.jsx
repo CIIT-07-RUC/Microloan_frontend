@@ -15,12 +15,15 @@ import { UsersAPI } from '../../Apis//UserAPI.js';
 
 export function BorrowerProposalPage() {
   let {id} = useParams();
-  const { isUserLoggedIn, userEmail, userId } = useContext(ThemeContext);
+  const { isUserLoggedIn, userEmail, userId, isInvestor, roleId } = useContext(ThemeContext);
 
   const navigate = useNavigate();
   const [proposalCount, setProposalCount] = useState(0);
   const [isLoadedDone, setIsLoadedDone] = useState(false);
   const [isUserLoadedDone, setIsUserLoadedDone] = useState(false);
+
+  const [borrowerProposalAccepted, setBorrowerProposalAccepted] = useState(false);
+
 
   const [borrowerProposal, setBorrowerProposal] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -30,9 +33,24 @@ export function BorrowerProposalPage() {
 		window.location.reload();
   }
 
+  console.log("isInvestor", isInvestor)
+
   const createConnectionOtherLoans = () => {
     navigate(`/browseLoansPage`, {replace:true});
 		window.location.reload();
+  }
+
+  const createLoanConfirmationFunc = async (borrowerProposalId) => {
+    try{
+      const result = await BorrowerProposalsAPI.createLoanConfirmation(parseInt(roleId), parseInt(borrowerProposalId), new Date().toISOString().split('T')[0]);
+      setBorrowerProposalAccepted(result);
+      console.log("RESULT ", result)
+
+    }
+    catch(ex){
+      console.warn("EEXXX", ex)
+
+    }
   }
 
 
@@ -90,7 +108,18 @@ export function BorrowerProposalPage() {
           <div className="button-wrapper">
           {isUserLoggedIn ? 
             <>
-              <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Invest money in loan</Button>
+              { isInvestor !== "False" ?
+               !borrowerProposalAccepted ? 
+              <Button variant="primary" type='submit' onClick={() => createLoanConfirmationFunc(borrowerProposal.id)}>Invest money in loan</Button>
+              : 
+              <Alert variant='success'>
+              Borrower proposal was accepted
+              </Alert>
+              : 
+              <Alert variant='danger'>
+              You are not investor
+              </Alert>
+              }
               <Button variant="primary" type='submit' onClick={() => createConnectionToChat(userData.id)}>Send private message</Button>
             </>
             : 

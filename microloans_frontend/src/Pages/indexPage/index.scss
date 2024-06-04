@@ -40,6 +40,17 @@
 	}
 }
 
+.index__presentation{
+	button{
+		width: 530px;
+		margin-top: 20px; 
+		height: 60px;
+		@media (max-width: 767px) {
+			width: 100%;
+		}
+	}
+}
+
 .borrower__section{
 	.borrower__points--wrapper{
 		margin-top: 70px;

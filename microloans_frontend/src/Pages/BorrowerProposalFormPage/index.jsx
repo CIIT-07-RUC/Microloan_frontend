@@ -35,6 +35,7 @@ export function BorrowerProposalFormPage() {
 		try{
 			const result = await BorrowerProposalsAPI.createBorrowerProposal(roleId, proposalInterestRate, proposalAmount, proposalMonths, organization, title, description );
 			setIsOperationSuccessful(result.isRegistrationSuccessful)
+			console.log("result.responseMessage", result.responseMessage)
 			setResponseMessage(result.responseMessage);
 			console.log("RESULTTT", result);
 		}
@@ -47,7 +48,7 @@ export function BorrowerProposalFormPage() {
         <>
 		<NavigationMain/>
 		<h1 style={{ marginTop: '50px',  marginBottom: '50px', textAlign: 'center'}}>Create borrower proposal</h1>
-		<Container style={{ marginTop: '50px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+		<Container className='borrower-form' style={{ marginTop: '50px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
 
 
 		{ isUserLoggedIn ? 
@@ -59,7 +60,7 @@ export function BorrowerProposalFormPage() {
 				</Alert>
 				:
 					
-				<Form style={{width: '50%'}} onSubmit={createBorrowerProposalFunc}>
+				<Form onSubmit={createBorrowerProposalFunc}>
 					<Form.Group className="mb-3" controlId="">
 						<Form.Label>Title</Form.Label>
 						<Form.Control
@@ -124,7 +125,7 @@ export function BorrowerProposalFormPage() {
 				{ isOperationSuccessful && responseMessage !== "" ? 
 					
 					<Alert style={{ marginTop: '50px'}} variant='success'>
-					{ responseMessage }
+					{ responseMessage } 
 					</Alert>: null
 				}
 
@@ -132,7 +133,7 @@ export function BorrowerProposalFormPage() {
 
 			: 
 		    <Alert variant='danger'>
-				{responseMessage}
+				Login first in order to create proposal
             </Alert>	
 		}
 		

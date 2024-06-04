@@ -20,7 +20,7 @@ export function IndexPage() {
 				<div className="index__banner__content">
 					<div className="index__banner__content--inner">
 						<h3>Simple and easy loans for all types of situations</h3>
-						<h6>Blabla bla lorem ipsum dolor sit amet blablaBlabla bla lorem ipsum dolor sit amet blabla</h6>
+						<h6>From Sign-Up to Submission - Ensuring Seamlessness in Borrower Experience</h6>
 						<Button style={{marginBottom: '20px'}} variant="primary">I want to invest money</Button>
 						<Button variant="primary">I want to borrow money</Button>
 					</div>
@@ -29,7 +29,7 @@ export function IndexPage() {
 			<Container>
 				<div className="index__presentation" style={{ textAlign: 'center', marginTop: '20px'}}>
 						<h1 style={{ marginTop: '40px'}}>Simple and easy loans for all types of situations</h1>
-						<Button style={{ width: '530px', marginTop: '20px', height: '60px'}} variant="primary">Get started today!</Button>
+						<Button  variant="primary">Get started today!</Button>
 				</div>
 				<div className="separator"></div>
 				<div className="borrower__section" style={{ textAlign: 'center', marginTop: '20px'}}>

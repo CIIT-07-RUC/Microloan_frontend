@@ -58,7 +58,6 @@ export function BrowseLoansPage() {
                <div className="post" onClick={() => navigateToBorrowerProposalPage(post.id)}>
                   <img src={borrowerImg} alt={post.title} className="post-image" />
                   <h3 className="post-title">{post.title}</h3>
-                  <h1>BorrowerId  {post.borrowerId} </h1>
                   <p className="post-subtitle">Proposal amount: {post.proposalAmount}DKK</p>
                   <p className="post-subtitle">Proposal Interest Rate: {post.proposalInterestRate}%</p>
 

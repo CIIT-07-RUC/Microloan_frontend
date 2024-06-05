@@ -61,6 +61,10 @@ export function NavigationMain(props) {
               <NavDropdown.Item href="createProposal">
                 Create loan
               </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="active-loans">
+                Your active loans
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           { !isUserLoggedIn ?

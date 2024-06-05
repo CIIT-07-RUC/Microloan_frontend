@@ -70,7 +70,7 @@ function AuthModal (props) {
     <>
       <Modal show={props.show} onHide={props.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title style={{textAlign: 'center'}}>Authentication</Modal.Title>
+          <Modal.Title style={{textAlign: 'center'}}></Modal.Title>
         </Modal.Header>
           <Tabs
           defaultActiveKey={props.defaultKey}

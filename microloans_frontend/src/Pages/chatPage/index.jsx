@@ -37,8 +37,7 @@ export function ChatPage() {
       connection.start()
         .then(async () => {
           await connection.invoke("AddToGroup", userId, groupName).then(e => console.log("GGG", e))
-          const conversationList = await connection.invoke("GetConversationsByUser", userId);
-          console.log("conversationList", conversationList)
+        //  const conversationList = await connection.invoke("GetConversationsByUser", userId);
           connection.on("ReceiveMessage", (user, message) => {
             let messageArr;
             if (message.includes("|")) {

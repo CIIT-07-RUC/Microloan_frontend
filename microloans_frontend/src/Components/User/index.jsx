@@ -21,9 +21,9 @@ export function User(props) {
       return (
 		<div className="user">
 			<img src={userImg} className="post-image" />
-			<h3 className="user-name">{props.name}</h3>
+			<h3 className="user-name"></h3>
 			<p className="user-email">{props.email}</p>
-			<p>Role: {props.role}</p>
+			<p>Role: {props.role ? 'Investor' : 'Borrower' }{props.role}</p>
 			<Button variant="primary" type='submit' onClick={() => createConnection(props["id"])}>Send private message</Button>
 		</div>
       );
